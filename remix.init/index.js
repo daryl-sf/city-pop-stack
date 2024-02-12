@@ -117,9 +117,6 @@ const main = async ({ packageManager, rootDirectory }) => {
       path.join(rootDirectory, "remix.init", "gitignore"),
       path.join(rootDirectory, ".gitignore"),
     ),
-    fs.rm(path.join(rootDirectory, ".github", "workflows", "format-repo.yml")),
-    fs.rm(path.join(rootDirectory, ".github", "workflows", "lint-repo.yml")),
-    fs.rm(path.join(rootDirectory, ".github", "workflows", "no-response.yml")),
     fs.rm(path.join(rootDirectory, ".github", "dependabot.yml")),
     fs.rm(path.join(rootDirectory, "LICENSE.md")),
   ]);
