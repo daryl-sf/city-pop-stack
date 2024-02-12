@@ -11,8 +11,6 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "cross-env NODE_ENV=production arc sandbox",
     "test": "vitest -c test/vitest.config.js",
-    "test:e2e": "playwright test -c test/playwright.config.ts",
-    "test:e2e:prepare": "playwright install",
     "typecheck": "tsc -b",
     "validate": "run-p \"test -- --run\" lint typecheck"
   },
@@ -38,7 +36,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.2.0",
-    "@playwright/test": "^1.41.2",
     "@remix-run/dev": "*",
     "@testing-library/jest-dom": "^6.1.4",
     "@types/architect__functions": "^3.13.10",

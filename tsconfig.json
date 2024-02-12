@@ -15,8 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "~/e2e": ["test/e2e/*"]
+      "~/*": ["./app/*"]
     },
     "skipLibCheck": true,
 

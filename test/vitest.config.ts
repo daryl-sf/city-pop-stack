@@ -13,8 +13,7 @@ export default defineConfig({
     setupFiles: ["./test/setup-test-env.ts"],
     exclude: [
       "**/node_modules/**",
-      "**/e2e/**",
-      "**/mocks/**",
+      "**/test/mocks/**",
       "**/public/**",
       "**/server/**",
       "**/.{idea,git,cache,output,temp}/**",

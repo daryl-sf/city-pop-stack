@@ -80,48 +80,8 @@ jobs:
       - name: ⚡ Run vitest
         run: npm run test -- --coverage
 
-  e2e:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v4
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v4
-        with:
-          cache: npm
-          cache-dependency-path: ./package.json
-          node-version: 18
-
-      - name: 📥 Install deps
-        run: npm install
-
-      - name: 🎪 Prepare playwright
-        run: |
-          yarn exec playwright install-deps
-          yarn exec playwright install
-          cp .env.example .env
-
-      - name: 🎭 Run playwright
-        run: yarn test:e2e
-        env:
-          E2E_WITH_SERVER: yes
-          DEBUG: pw:webserver
-          PORT: 8765
-          NODE_ENV: test
-
-      - name: 📸 Upload results
-        uses: actions/upload-artifact@v2
-        if: ${{ failure() }}
-        with:
-          name: test-artifacts
-          path: |
-            test/e2e/results
-            test/e2e/report
-
   deploy:
-    needs: [lint, typecheck, test, e2e]
+    needs: [lint, typecheck, test]
     runs-on: ubuntu-latest
 
     steps:

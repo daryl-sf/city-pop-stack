@@ -14,7 +14,6 @@ npx create-remix@latest --template daryl-sf/city-pop-stack
 - Email/Password Authentication with [cookie-based sessions](https://remix.run/utils/sessions#createcookiesessionstorage)
 - DynamoDB access via [`arc.tables`](https://arc.codes/docs/en/reference/runtime-helpers/node.js#arc.tables)
 - Styling with [Tailwind](https://tailwindcss.com/)
-- End-to-end testing with [Playwright](https://playwright.dev/)
 - Local third party request mocking with [MSW](https://mswjs.io)
 - Unit testing with [Vitest](https://vitest.dev) and [Testing Library](https://testing-library.com)
 - Code formatting with [Prettier](https://prettier.io)
