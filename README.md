@@ -23,12 +23,6 @@ npx create-remix@latest --template daryl-sf/city-pop-stack
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
 
-## Quickstart
-
-Click this button to create a [Gitpod](https://gitpod.io) workspace with the project set up
-
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/from-referrer/)
-
 ## Development
 
 - First run this stack's `remix.init` script and commit the changes it makes to your project.
