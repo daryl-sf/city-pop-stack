@@ -1,5 +1,5 @@
 @app
-grunge-stack-template
+city-pop-stack-template
 
 @aws
 runtime nodejs18.x

@@ -11,5 +11,13 @@ export default defineConfig({
     globals: true,
     environment: "happy-dom",
     setupFiles: ["./test/setup-test-env.ts"],
+    exclude: [
+      "**/node_modules/**",
+      "**/e2e/**",
+      "**/mocks/**",
+      "**/public/**",
+      "**/server/**",
+      "**/.{idea,git,cache,output,temp}/**",
+    ],
   },
 });

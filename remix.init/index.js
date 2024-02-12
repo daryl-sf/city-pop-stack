@@ -108,7 +108,7 @@ const main = async ({ packageManager, rootDirectory }) => {
   await Promise.all([
     fs.writeFile(
       APP_ARC_PATH,
-      appArc.replace("grunge-stack-template", APP_NAME),
+      appArc.replace("city-pop-stack-template", APP_NAME),
     ),
     fs.writeFile(ENV_PATH, newEnv),
     fs.writeFile(README_PATH, newReadme),
@@ -117,14 +117,10 @@ const main = async ({ packageManager, rootDirectory }) => {
       path.join(rootDirectory, "remix.init", "gitignore"),
       path.join(rootDirectory, ".gitignore"),
     ),
-    fs.rm(path.join(rootDirectory, ".github", "ISSUE_TEMPLATE"), {
-      recursive: true,
-    }),
     fs.rm(path.join(rootDirectory, ".github", "workflows", "format-repo.yml")),
     fs.rm(path.join(rootDirectory, ".github", "workflows", "lint-repo.yml")),
     fs.rm(path.join(rootDirectory, ".github", "workflows", "no-response.yml")),
     fs.rm(path.join(rootDirectory, ".github", "dependabot.yml")),
-    fs.rm(path.join(rootDirectory, ".github", "PULL_REQUEST_TEMPLATE.md")),
     fs.rm(path.join(rootDirectory, "LICENSE.md")),
   ]);
 

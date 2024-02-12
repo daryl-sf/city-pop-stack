@@ -1,4 +1,5 @@
 import path from "node:path";
+import fs from 'fs';
 
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
@@ -16,9 +17,31 @@ export default {
 
       const appDir = path.join(process.cwd(), "app");
 
-      route(
-        "__tests/create-user",
-        path.relative(appDir, "cypress/support/test-routes/create-user.ts"),
-      );
+      const testRoutesDir = path.join(__dirname, "e2e/routes");
+
+      findTestRoutes(appDir, testRoutesDir, testRoutesDir, route);
     }),
 };
+
+/**
+  * @param {string} appDir
+  * @param {string} baseDir
+  * @param {string} dir
+  * @param {import('@remix-run/dev/dist/config/routes').DefineRouteFunction} route
+  */
+function findTestRoutes(appDir, baseDir, dir, route) {
+  for (const routeFile of fs.readdirSync(dir)) {
+    if (routeFile.startsWith("_")) {
+      continue;
+    }
+    const fullPath = path.join(dir, routeFile);
+    if (fs.statSync(fullPath).isDirectory()) {
+      findTestRoutes(appDir, baseDir, fullPath, route);
+    } else if (fullPath.match(/\.tsx?$/)) {
+      route(
+        `__tests/${path.relative(baseDir, fullPath).replace(/\.tsx?$/, "")}`,
+        path.relative(appDir, fullPath)
+      );
+    }
+  }
+}

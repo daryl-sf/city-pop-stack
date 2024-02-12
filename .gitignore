@@ -17,6 +17,7 @@ preferences.arc
 sam.json
 sam.yaml
 .env
-
-/cypress/screenshots
-/cypress/videos
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

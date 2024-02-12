@@ -60,8 +60,8 @@ jobs:
       - name: 🔎 Type check
         run: npm run typecheck --if-present
 
-  vitest:
-    name: ⚡ Vitest
+  test:
+    name: ⚡ Test
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
@@ -80,15 +80,12 @@ jobs:
       - name: ⚡ Run vitest
         run: npm run test -- --coverage
 
-  cypress:
-    name: ⚫️ Cypress
+  e2e:
+    name: E2E Tests
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
-
-      - name: 🏄 Copy test env vars
-        run: cp .env.example .env
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
@@ -100,19 +97,31 @@ jobs:
       - name: 📥 Install deps
         run: npm install
 
-      - name: 🏗 Build
-        run: npm run build
+      - name: 🎪 Prepare playwright
+        run: |
+          yarn exec playwright install-deps
+          yarn exec playwright install
+          cp .env.example .env
 
-      - name: 🌳 Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm run dev
-          wait-on: "http://localhost:8811"
+      - name: 🎭 Run playwright
+        run: yarn test:e2e
         env:
-          PORT: "8811"
+          E2E_WITH_SERVER: yes
+          DEBUG: pw:webserver
+          PORT: 8765
+          NODE_ENV: test
+
+      - name: 📸 Upload results
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: test-artifacts
+          path: |
+            test/e2e/results
+            test/e2e/report
 
   deploy:
-    needs: [lint, typecheck, vitest, cypress]
+    needs: [lint, typecheck, test, e2e]
     runs-on: ubuntu-latest
 
     steps:
