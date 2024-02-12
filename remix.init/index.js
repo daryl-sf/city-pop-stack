@@ -100,7 +100,7 @@ const main = async ({ packageManager, rootDirectory }) => {
 `;
 
   const newReadme = readme
-    .replace(new RegExp("RemixGrungeStack", "g"), toLogicalID(APP_NAME))
+    .replace(new RegExp("CityPopStack", "g"), toLogicalID(APP_NAME))
     .replace(initInstructions, "");
 
   updatePackageJson({ APP_NAME, packageJson });
