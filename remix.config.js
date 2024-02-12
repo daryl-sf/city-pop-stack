@@ -16,8 +16,7 @@ export default {
       console.log("⚠️  Test routes enabled.");
 
       const appDir = path.join(process.cwd(), "app");
-
-      const testRoutesDir = path.join(__dirname, "e2e/routes");
+      const testRoutesDir = path.join(process.cwd(), "test/e2e/routes");
 
       findTestRoutes(appDir, testRoutesDir, testRoutesDir, route);
     }),
